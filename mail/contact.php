@@ -24,7 +24,7 @@ if ($conn->connect_error) {
   exit();
 }
 
-$sql = "INSERT INTO formanswers (name, subject, email, message)
+$sql = "INSERT INTO formanswers (ANSname, ANSsubject, email, ANSmessage)
 VALUES ('$name', '$subject', '$email', '$message')";
 
 if ($conn->query($sql) === TRUE) {
