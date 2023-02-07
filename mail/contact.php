@@ -1,7 +1,6 @@
 <?php
 if(empty($_POST['name']) || empty($_POST['subject']) || empty($_POST['message']) || !filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
-  http_response_code(500);
-  echo json_encode(['message' => 'Sorry, there was a problem with your submission. Please complete the form and try again.']);
+  echo json_encode(array("status" => "error"));
   exit();
 }
 
@@ -19,21 +18,17 @@ $dbname = "forms";
 $conn = new mysqli($servername, $username, $password, $dbname);
 // Check connection
 if ($conn->connect_error) {
-  http_response_code(500);
-  echo json_encode(['message' => 'Sorry, there was a problem with connecting to the database. Please try again later.']);
-  exit();
+  die("Connection failed: " . $conn->connect_error);
 }
 
 $sql = "INSERT INTO formanswers (ANSname, ANSsubject, email, ANSmessage)
 VALUES ('$name', '$subject', '$email', '$message')";
 
 if ($conn->query($sql) === TRUE) {
-  echo json_encode(['message' => 'Your message has been sent successfully']);
+  echo json_encode(array("status" => "success"));
 } else {
-  http_response_code(500);
-  echo json_encode(['message' => 'Sorry, there was a problem with inserting your data into the database. Please try again later.']);
+  echo json_encode(array("status" => "error"));
 }
 
 $conn->close();
 ?>
-
