@@ -1,7 +1,7 @@
+var successTone = new Audio('/sounds/Success.mp3');
+var errorTone = new Audio('/sounds/Error.mp3');
 $("#contactForm").submit(function (event) {
     event.preventDefault();
-    var successTone = new Audio('/sounds/Success.mp3');
-    var errorTone = new Audio('/sounds/Error.mp3');
     var name = $("input#name").val();
     var email = $("input#email").val();
     var subject = $("input#subject").val();
