@@ -9,10 +9,10 @@ $email = strip_tags(htmlspecialchars($_POST['email']));
 $subject = strip_tags(htmlspecialchars($_POST['subject']));
 $message = strip_tags(htmlspecialchars($_POST['message']));
 
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "forms";
+$servername = "192.168.150.213";
+$username = "webprogss211";
+$password = "fancyR!ce36";
+$dbname = "webprogss211";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -21,7 +21,7 @@ if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
 
-$sql = "INSERT INTO formanswers(ANSname, ANSsubject, email, ANSmessage)
+$sql = "INSERT INTO jdgonzales2(ANSname, ANSsubject, email, ANSmessage)
 VALUES ('$name', '$subject', '$email', '$message')";
 
 if ($conn->query($sql) === TRUE) {
