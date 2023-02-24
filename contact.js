@@ -1,5 +1,5 @@
-var successTone = new Audio('/sounds/Success.mp3');
-var errorTone = new Audio('/sounds/Error.mp3');
+var successTone = new Audio('Success.mp3');
+var errorTone = new Audio('Error.mp3');
 $("#contactForm").submit(function (event) {
     event.preventDefault();
     var name = $("input#name").val();
