@@ -1,6 +1,7 @@
 $("#contactForm").submit(function (event) {
     event.preventDefault();
-
+    var successTone = new Audio('/sounds/Success.mp3');
+    var errorTone = new Audio('/sounds/Error.mp3');
     var name = $("input#name").val();
     var email = $("input#email").val();
     var subject = $("input#subject").val();
@@ -13,6 +14,8 @@ $("#contactForm").submit(function (event) {
         message: message
     }, function (data) {
         if (data.status === "success") {
+            // play success tone
+            successTone.play();
             $('#success').html("<div class='alert alert-success'>");
             $('#success > .alert-success').html("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;")
                     .append("</button>");
@@ -21,6 +24,8 @@ $("#contactForm").submit(function (event) {
             $('#success > .alert-success')
                     .append('</div>');
         } else {
+            // play error tone
+            errorTone.play();
             $('#success').html("<div class='alert alert-danger'>");
             $('#success > .alert-danger').html("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;")
                     .append("</button>");
@@ -29,6 +34,8 @@ $("#contactForm").submit(function (event) {
         }
         $('#contactForm').trigger("reset");
     }, "json").fail(function () {
+        // play error tone
+        errorTone.play();
         $('#success').html("<div class='alert alert-danger'>");
         $('#success > .alert-danger').html("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;")
                 .append("</button>");
